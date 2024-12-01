@@ -1,0 +1,535 @@
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Genel Stil */
+body {
+  font-family: 'Lato', sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+  line-height: 1.6;
+}
+.hidden {
+  display: none;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* Sidebar */
+aside {
+  width: 15vw;
+  background-color: #214d4d;
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  
+  
+}
+
+aside h3 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.sidebar-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.sidebar-buttons {
+  width: 90%;
+  padding: 10px 15px;
+  background-color: #378070;
+  color: whitesmoke;
+  border: 1px solid #123653;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: 1.2;
+}
+
+.sidebar-buttons:hover {
+  background-color: #1dc6ac;
+  transform: scale(1.05); /* Hover sırasında hafif büyütme efekti */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+header {
+  background-color: #214d4d;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.content-section {
+  width: 90%;
+  margin: 0 auto 10px auto; /* Ortalayıp alt boşluk ekler */
+  padding: 20px;
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 60vw;
+}
+/* Form içindeki gruplar */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Gruplar arası boşluk */
+}
+
+.form-row .form-group {
+  flex: 1; /* Her grup eşit alan kaplar */
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+form button {
+  background-color: #847aae;
+  width: 100%;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+form button:hover {
+  background-color: #513051;
+}
+
+/* Tablolar */
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: white;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+table th {
+  background-color: #24c077;
+  color: white;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+/* Search Section */
+.search-bar {
+  width: 100%; /* Search bar genişliği tüm alanı kaplar */
+  max-width: 800px; /* Maksimum genişlik */
+  margin: 0 auto 20px auto; /* Ortalanmış */
+  
+}
+
+.search-input {
+  width: 60%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.btn-search,
+.btn-clear {
+  padding: 10px 15px;
+  background-color: #3b5e4a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-search:hover {
+  background-color: #4e7c60;
+}
+
+.btn-clear {
+  background-color: #d9534f;
+}
+
+.btn-clear:hover {
+  background-color: #c9302c;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  top: 65%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  width: 60%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  background-color: #f7eeff;
+}
+
+.modal-student-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #fefefe;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.modal .close-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.close-button:hover{
+color: red;
+text-decoration: none;
+}
+
+.modal-student-body {
+  display: flex;
+  margin: 20px 0;
+  justify-content: flex-start; /* Sola hizala */
+  align-items: center; /* Dikey hizalamayı ortala */
+  
+}
+
+.student-profile img {
+  width: 88px; /* Profil resmini küçült */
+  height: auto;
+  border-radius: 50%;
+  margin-right: 20px;
+
+}
+.model-student-info {
+  margin-left: 20px;
+  text-align: left;
+}
+
+
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.details-table th,
+.details-table td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+.details-table th {
+  background-color: #0fa3b1;
+  font-weight: bold;
+}
+
+.details-table tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+.details-table tr:nth-child(odd) {
+  background-color: #eaeaea; /* Daha koyu renk */
+}
+
+/* Course Search Section */
+.course-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.course-dropdown,
+.filter-dropdown {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.btn-view {
+  padding: 10px 20px;
+  background-color: #3b5e4a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-view:hover {
+  background-color: #4e7c60;
+}
+
+/* Results Table */
+.results-table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: white;
+}
+
+.results-table th,
+.results-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.results-table th {
+  background-color: #513051;
+  color: white;
+}
+
+.results-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Statistics Section */
+.statistics-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.stat-item {
+  background-color: #9e9df9;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.stat-item p {
+  font-size: 1.2rem;
+}
+
+
+@media (max-width: 480px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  /* Sidebar */
+  aside {
+    width: 100%; /* Sidebar tam ekran genişliğini kaplar */
+    top: 0;
+    position: sticky; /* Üste sabitlenir */
+    z-index: 10;
+    height: auto;
+    padding: 10px 0;
+    
+  }
+  aside h3 {
+    text-align: center;
+    font-size: 1rem;
+    padding-bottom: 10px;
+  }
+
+  .sidebar-buttons-container {
+    gap: 10px; /* Dikey boşluk azaltılır */
+  }
+
+  .sidebar-buttons {
+    width: 100%; /* Buton genişliği içeriğe göre ayarlanır */
+    padding: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  /* Header */
+  header {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+  .content-section {
+    width: 100%;
+    margin: 0 auto 20px auto; /* Ortalayıp alt boşluk ekler */
+    padding: 10px;
+  }
+  
+
+  /* Form */
+  form {
+    max-width: 100vw; /* Form genişliği azaltılır */
+    padding: 10px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 10px; /* Her form grubu arasındaki boşluk azaltılır */
+  }
+
+  .form-group label {
+    font-size: 0.85rem; /* Etiket yazı boyutu küçültülür */
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 0.85rem; /* Input yazı boyutu küçültülür */
+  }
+
+  /* Search Bar */
+  .search-bar {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .search-input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .btn-search,
+  .btn-clear {
+  width: 100%;
+  margin-top: 5px;
+  
+}
+.course-search {
+  flex-direction: column; /* Arama alanları dikey olarak sıralanır */
+  gap: 10px;
+}
+
+.course-dropdown,
+.filter-dropdown {
+  width: 100%; 
+  box-sizing: border-box; /* Padding is included */
+}
+
+.btn-view {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 1.1rem; /* Font büyütülür */
+}
+
+
+/* Results Table */
+.results-table {
+  width: 100%; /* Table width */
+  font-size: 0.9rem;
+  
+}
+.statistics-container {
+  flex-direction: column; /* İstatistikler alt alta gelir */
+  gap: 15px; /* Aralarındaki boşluk artırılır */
+}
+
+.stat-item {
+  flex: 1 1 100%; /* Her bir stat itemı alt alta sıralanır ve %100 genişlik alır */
+  text-align: center;
+  padding: 8px 0;
+}
+
+.stat-item p {
+  font-size: 1rem; /* İstatistiklerin yazı boyutu küçültülür */
+}
+  /* Tablolar */
+  table {
+    font-size: 0.6rem; 
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table th,
+  table td {
+    padding: 4px;
+  }
+
+  /* Modal */
+  .modal {
+    width: 95%; /* Modal genişliği neredeyse tam ekran olur */
+    padding: 15px;
+  }
+
+  .modal-student-content h3 {
+    font-size: 1rem; /* Başlık boyutu küçültülür */
+  }
+
+  .statistics-container {
+    flex-direction: column; /* İstatistikler alt alta sıralanır */
+    gap: 15px;
+  }
+}
+
+
+
+
+
+

@@ -1,0 +1,140 @@
+/* Kurs kartları */
+.course-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px auto;
+  background-color: #ead9fa;
+  border-radius: 10px;
+  max-width: 80vw;
+}
+
+.course-card {
+  background-color: #f9f9f6;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.course-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+/* Kart başlığı ve resim */
+.course-card-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.course-image {
+  width: 35px;
+  object-fit: cover;
+  
+  margin-bottom: 10px;
+}
+/* Kart içeriği */
+.course-card-body {
+  text-align: left;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.course-card-body p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Kart altındaki butonlar */
+.course-card-footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.course-card-footer button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+/*ADD STUDENTS TABLE*/
+.students-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.students-table th,
+.students-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.students-table th {
+  background-color: #513051;
+  color: white;
+}
+
+.students-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.btn-update {
+  background-color: #5bc0de;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background-color: #e74236;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-update:hover {
+  background-color: #2b92b1;
+}
+
+.btn-delete:hover {
+  background-color: #9d0707;
+}
+
+/*ASSIGN STUDENTS TO COURSES SECTION -displaymessage style*/
+/* Message Box Style */
+
+#courseMessage {
+  color: green;
+   font-size: 16px; 
+   text-align: center; 
+   display: none;
+}
+
+#update-message {
+  color: white;
+  background-color: green;
+  padding: 5px 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+}

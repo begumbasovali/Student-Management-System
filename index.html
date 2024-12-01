@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management System</title>
+  <!--Css File Link-->
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="course-cards.css" />
+  <link rel="stylesheet" href="sections.css" />
+  
+
+
+  <!--Google Font EB Garamond and Lato-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+  <!--JavaScript File Link-->
+  <script src="./index.js" type="module" defer></script>
+  <script src="./main.js" type="module" defer></script>
+
+
+</head>
+<body>
+<div class="container">
+  <!-- Left sidebar -->
+  <aside>
+      <h3>Operations</h3>
+      <div class="sidebar-buttons-container">
+        <button class="sidebar-buttons" id="courses-btn"><b>Manage Courses</b></button>
+        <button class="sidebar-buttons" id="students-btn"><b>Add Students</b></button>
+        <button class="sidebar-buttons" id="assign-students-courses-btn"><b>Assign Students To Courses</b></button>
+        <button class="sidebar-buttons" id="search-students-btn"><b>Search Students</b></button>
+        <button class="sidebar-buttons" id="view-course-stats-btn"><b>View Course Statistics</b></button>
+
+      </div>
+  </aside>
+  <!--Main Section-->
+  <main>
+    <!-- Header -->
+    <header>
+      <h1>MSKU Student Management System</h1>
+  </header>
+  <!--HOME SECTION-->
+    <section id="home-section" class="content-section" >
+      <h2>Home</h2>
+      <h3>Welcome to the Student Management System</h3>
+      <p>You can manage students, courses, and more with ease.</p>
+    </section>
+
+    <!--SECTION-1: Manage Courses Section -->
+    <section id="manageCoursesSection" class="content-section hidden">
+      <h2>Manage Courses</h2>
+      <h3>Add a New Course</h3>
+      <p>Please fill in the form below. <br>Note: Course ID must be exactly 4 digits.</p>
+      <div id="courseMessage"></div>
+        <!-- Course Form -->
+        <form id="addCourseForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="course-id">Course ID:</label>
+              <input
+                type="number"
+                id="course-id"
+                class="course-input"
+                min="1000"
+                max="9999"
+                title="Course ID must be 4 digits" 
+                placeholder="1234"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="course-name">Course Name:</label>
+              <input
+                type="text"
+                id="course-name"
+                class="course-input"
+                placeholder="Web Development"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="instructor-name">Instructor Name:</label>
+              <input
+                type="text"
+                id="instructor-name"
+                class="course-input"
+                placeholder="Dr. John Doe"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ects">ECTS:</label>
+              <input
+                type="number"
+                id="ects"
+                class="course-input"
+                min="1"
+                max="8"
+                placeholder="6"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="midterm-percent">Midterm Percent:</label>
+              <input
+                type="number"
+                id="midterm-percent"
+                class="course-input"
+                min="0"
+                max="100"
+                placeholder="40"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="grading-scale">Grading Scale:</label>
+              <select
+                id="grading-scale"
+                class="course-input"
+                required
+              >
+                <option value="" disabled selected>Choose Scale</option>
+                <option value="7">7</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+          </div>
+          
+          <button type="submit" id="addCourseButton" class="btn-add-course">Add Course</button>
+        </form>
+      
+      <!-- Container to display added courses -->
+      <div id="courseCardsContainer" class="course-cards-container">
+        <!-- Course cards will be dynamically added here -->
+      </div>
+    </section>
+    
+   
+
+    <!--SECTION-2: ADD STUDENT TO THE SYSTEM Section -->
+    <section id="addStudentSection" class="content-section hidden">
+      <h2>Add Students to System</h2>
+      <h3>Add a New Student</h3>
+      <p>Please fill in the form below to add a new student.</p>
+        <!-- Form to Add Student -->
+        <form id="addStudentForm">
+          <div class="form-group">
+            <label for="student-id">Student ID:</label>
+            <input 
+              type="number"  
+              name="studentId" 
+              id="student-id"
+              pattern="[0-9]{9}" 
+              title="Student ID must be 9 digits" 
+              min="100000000" 
+              max="999999999"
+              placeholder="e.g., 200709001"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="student-name">Student Name:</label>
+            <input
+              type="text" 
+              name="studentName" 
+              id="student-name" 
+              placeholder="e.g., John"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="student-surname">Student Surname:</label>
+            <input 
+              type="text"
+              name="studentSurname" 
+              id="student-surname" 
+              placeholder="e.g., Doe"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-add-student">Add Student</button>
+        </form>
+      
+    
+      <!-- Students Table -->
+      <div class="students-table">
+        <h3>Students List</h3>
+        <table id="studentsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="studentsTableBody">
+            <!-- Student rows will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+    
+
+  <!-- SECTION-3: Assign Students to Courses Section -->
+  <section id="assignStudentsToCoursesSection" class="content-section hidden">
+    <h2>Assign Students to Courses</h2>
+    <h3>Assign a Student to a Course</h3>
+    <p>Please carefully fill in the form below to add a student to a course.</p>
+    
+      <!-- Form to Add Student to the Course -->
+      <form id="assignStudentToCourseForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="select-course">Select Course:</label>
+            <select 
+              name="selectCourse"
+              id="select-course" 
+              required>
+              <option value="" disabled selected>Select a Course</option>
+              <!-- Options will be populated dynamically with course names -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="select-studentID">Select Student ID:</label>
+            <select 
+              name="selectStudentID"
+              id="select-studentID" 
+              required>
+              <option value="" disabled selected>Select a Student ID</option>
+              <!-- Options will be dynamically added -->
+            </select>
+          </div>
+        </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="midterm-grade">Midterm Grade:</label>
+              <input 
+                type="number" 
+                name="midtermGrade"
+                id="midterm-grade" 
+                min="0" 
+                max="100" 
+                placeholder="e.g., 75" 
+                required />
+            </div>
+            <div class="form-group">
+              <label for="final-grade">Final Grade:</label>
+              <input 
+                type="number" 
+                name="finalGrade"
+                id="final-grade" 
+                min="0" 
+                max="100" 
+                placeholder="e.g., 85" 
+                required />
+            </div>
+
+          </div>
+        
+        <button type="submit" id="add-student-button" class="btn-assign-student">Assign Student</button>
+      </form>
+    
+  
+    <!-- Students Table -->
+    <div class="students-table">
+      <h3>Students Assigned to Courses</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>Student ID</th>
+            <th>Midterm</th>
+            <th>Final</th>
+            <th>Letter Grade</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="getStudentsToCourseTable">
+          <!-- Students and course data will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!--SECTION-4: Search Student Section -->
+<section id="searchStudentsSection" class="content-section hidden">
+  <h2>Search for Student Scores</h2>
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input 
+      type="text" 
+      id="studentSearchInput" 
+      class="search-input" 
+      placeholder="Search by student name or ID..."
+      aria-label="Search Students"
+    />
+    
+      <button type="submit" id="studentSearchButton" class="btn-search">Search</button>
+    <button type="submit" id="clearButton" class="btn-clear">Clear</button>
+  </div>
+  <!-- Modal for Student Details -->
+<dialog id="studentDetailsModal" class="modal hidden">
+  <!-- Modal content -->
+  <div class="modal-student-content">
+    <!-- Close Button -->
+    <span class="close-button" id="closeModal">&times;</span>
+
+    <!-- Student Info -->
+    <div class="modal-student-body">
+      <div class="student-profile">
+        <img src="./assets/user.png" alt="Student Profile" id="studentProfile">
+      </div>
+      <div class="model-student-info">
+        <h3 id="modalStudentDetails">Student Details</h3>
+        <p><strong>ID:</strong> <span id="modalStudentID"></span></p>
+        <p><strong>GPA:</strong> <span id="modalStudentGPA"></span></p>
+      </div>
+    </div>
+
+    <!-- Courses and Grades Table -->
+    <h4>Courses & Grades</h4>
+    <table class="details-table">
+      <thead>
+        <tr>
+          <th>Course Name</th>
+          <th>Midterm Grade</th>
+          <th>Final Grade</th>
+          <th>Letter Grade</th>
+        </tr>
+      </thead>
+      <tbody id="modalCoursesTable">
+        <!-- Dynamic rows for courses will be added here -->
+      </tbody>
+    </table>
+  </div>
+</dialog>
+</section>
+
+
+
+
+<!--SECTION-5: Course Search and Statistics Section -->
+<section id="courseStatsSection" class="content-section hidden">
+  <h2>Course Statistics</h2>
+
+  <!-- Course Selection -->
+  <div class="course-search">
+    <label for="courseSelect">Select a Course:</label>
+    <select id="courseSelect" class="course-dropdown" aria-label="Select a Course">
+      <option value="none" disabled selected>Select a course</option>
+      <!-- Dynamic course options will be populated here -->
+    </select>
+
+    <label for="filterSelect">Filter:</label>
+    <select id="filterSelect" class="filter-dropdown">
+      <option value="All" selected>All Students</option>
+      <option value="Passed">Passed Students</option>
+      <option value="Failed">Failed Students</option>
+    </select>
+  
+    <button id="viewCourseButton" class="btn-view">View Results</button>
+  </div>
+
+  <!-- Statistics Section -->
+  <div id="statisticsSection" class="statistics-container">
+    <div class="stat-item">
+      <p><strong>Total Students:</strong> <span id="totalStudents">0</span></p>
+    </div>
+    <div class="stat-item">
+      <p><strong>Passed Students:</strong> <span id="passedStudents">0</span></p>
+    </div>
+    <div class="stat-item">
+      <p><strong>Failed Students:</strong> <span id="failedStudents">0</span></p>
+    </div>
+    <div class="stat-item">
+      <p><strong>Mean score of the entire class:</strong> <span id="meanScore">0.00</span></p>
+    </div>
+  </div>
+
+  <!-- Results Table -->
+  <div id="resultsTableSection">
+    <h3 id="courseTitle">Course Results</h3>
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Student ID</th>
+          <th>Name</th>
+          <th>Midterm</th>
+          <th>Final</th>
+          <th>Letter Grade</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="resultsTableBody">
+        <!-- Dynamic rows will be added here -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+  
+  
+</body>
+</html>
