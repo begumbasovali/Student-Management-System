@@ -650,10 +650,9 @@ clearButton.addEventListener("click", () => {
 });
 
 //SECTION-5: STATISTICS
-
 // Filter and Statistics
 viewCourseButton.addEventListener("click", (event) => {
-  event.preventDefault(); // Sayfanın yeniden yüklenmesini engellemek için
+  event.preventDefault(); // To prevent the page from reloading
 
   const selectedCourseName = courseSelect.value;
   const filterOption = filterSelect.value;
@@ -668,24 +667,27 @@ viewCourseButton.addEventListener("click", (event) => {
     alert("Course not found.");
     return;
   }
+  // Render course statistics (independent of filtering)
+  renderStatistics(course);
 
   // Filter Students and display
   const filteredAssignments = filterAssignmentsByCourse(course, filterOption);
   renderResultsTable(filteredAssignments, course);
-  renderStatistics(filteredAssignments, course);
+
 });
 
-// Filter Students (Passed, Failed veya All)
+// Filter Students (Passed, Failed or All)
 function filterAssignmentsByCourse(course, filterOption) {
+  // Filter course assignments
   const filteredAssignments = assignmentsArray.filter(assignment => assignment.courseName === course.courseName);
 
   switch (filterOption) {
     case "Passed":
-      return filteredAssignments.filter(assignment => assignment.grade !== "FF");
+      return filteredAssignments.filter(assignment => assignment.grade !== "FF"); // Passed students
     case "Failed":
-      return filteredAssignments.filter(assignment => assignment.grade === "FF");
+      return filteredAssignments.filter(assignment => assignment.grade === "FF"); // Failed Students
     default:
-      return filteredAssignments; // "All" students
+      return filteredAssignments; // All students
   }
 }
 
@@ -713,14 +715,16 @@ function renderResultsTable(assignments, course) {
   });
 }
 
-// Compute statistics and show
-function renderStatistics(assignments, course) {
-  const totalStudentsCount = assignments.length;
-  const passedCount = assignments.filter(assignment => assignment.grade !== "FF").length;
+// Compute and show course statistics (independent of filter)
+function renderStatistics(course) {
+  // Kursa ait tüm öğrenciler
+  const courseAssignments = assignmentsArray.filter(assignment => assignment.courseName === course.courseName);
+  const totalStudentsCount = courseAssignments.length;
+  const passedCount = courseAssignments.filter(assignment => assignment.grade !== "FF").length;
   const failedCount = totalStudentsCount - passedCount;
 
-  //Calculate mean of course
-  const mean = calculateMeanScore(assignments, course);
+  // Kursun ortalamasını hesapla
+  const mean = calculateMeanScore(courseAssignments, course);
 
   totalStudents.textContent = totalStudentsCount;
   passedStudents.textContent = passedCount;
@@ -728,21 +732,33 @@ function renderStatistics(assignments, course) {
   meanScore.textContent = `Mean score of the class: ${mean.toFixed(2)}`;
 }
 
-
-// Calculate the mean score
+// Calculate the mean score of all students function
 function calculateMeanScore(assignments, course) {
-  const totalScore = assignments.reduce((sum, assignment) => {
-    // Midterm ve final nots with percentages
-    const weightedMidterm = assignment.midterm * (course.midtermPercent / 100);
-    const weightedFinal = assignment.final * (course.finalPercent / 100);
-    return sum + weightedMidterm + weightedFinal;
-  }, 0);
+  let totalScore = 0;
 
-  // Calculate mean
-  const averageScore = totalScore / assignments.length || 0;
+  assignments.forEach(assignment => {
+    const midtermPercent = course.midtermPercent || 0;  // Take Midterm percent
+    const finalPercent = 100 - midtermPercent;          // Calculate final percent
 
+    // Weighted midterm and final notes
+    const weightedMidterm = assignment.midterm * (midtermPercent / 100);
+    const weightedFinal = assignment.final * (finalPercent / 100);
+
+    // NaN Control: If calculation is wrong
+    if (isNaN(weightedMidterm) || isNaN(weightedFinal)) {
+      console.error(`Invalid calculation for Student ${assignment.studentId}: Weighted Midterm: ${weightedMidterm}, Weighted Final: ${weightedFinal}`);
+    }
+
+    totalScore += weightedMidterm + weightedFinal;
+  });
+
+  // Calculate average score
+  const averageScore = totalScore / assignments.length || 0; // If there is no student return 0
+  console.log("Total Score:", totalScore); // Debugging: Check total score
+  console.log("Assignments Length:", assignments.length); // Debugging: Check student number
   return averageScore;
 }
+
 
 //Add courses in dropdown menu
 function renderCourseOptions() {
