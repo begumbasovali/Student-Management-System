@@ -18,9 +18,9 @@ class Student {
   }
 }
 
-const coursesArray = [];
-const studentsArray = [];
-const assignmentsArray = [];
+let coursesArray = [];
+let studentsArray = [];
+let assignmentsArray = [];
 
 // DOM Elements for Course
 const courseForm = document.getElementById("addCourseForm");
@@ -144,34 +144,40 @@ function showMessage(message, type, targetDiv) {
 
 // Render Course Cards
 function renderCourses() {
-  courseCardsContainer.innerHTML = "";
+  courseCardsContainer.innerHTML = "";  // Kursları sıfırla
 
   coursesArray.forEach((course) => {
     const card = document.createElement("div");
     card.classList.add("course-card");
     card.innerHTML = `
-    <div class="course-card-header">
-      <img src="./assets/course2.png" alt="Course Image" class="course-image" />
-      <h4>${course.courseName} (${course.courseId})</h4>
-    </div>
-    <div class="course-card-body">
-      <p><strong>Instructor:</strong> ${course.instructorName}</p>
-      <p><strong>ECTS:</strong> ${course.ects}</p>
-      <p><strong>Midterm Percent:</strong> ${course.midtermPercent}%</p>
-      <p><strong>Grading Scale:</strong> ${course.gradingScale}</p>
-    </div>
-    <div class="course-card-footer">
-      <button class="btn-update">Update</button>
-      <button class="btn-delete">Delete</button>
-    </div>
-  `;
+      <div class="course-card-header">
+        <img src="./assets/course2.png" alt="Course Image" class="course-image" />
+        <h4>${course.courseName} (${course.courseId})</h4>
+      </div>
+      <div class="course-card-body">
+        <p><strong>Instructor:</strong> ${course.instructorName}</p>
+        <p><strong>ECTS:</strong> ${course.ects}</p>
+        <p><strong>Midterm Percent:</strong> ${course.midtermPercent}%</p>
+        <p><strong>Grading Scale:</strong> ${course.gradingScale}</p>
+      </div>
+      <div class="course-card-footer">
+        <button class="btn-update">Update</button>
+        <button class="btn-delete">Delete</button>
+      </div>
+    `;
 
+    // Kursu güncelleme ve silme butonlarına event listener ekle
     card.querySelector(".btn-update").addEventListener("click", () => loadCourseToForm(course));
-    card.querySelector(".btn-delete").addEventListener("click", () => deleteCourse(course.courseId));
+    card.querySelector(".btn-delete").addEventListener("click", () => {
+      console.log("Delete button clicked for course", course.courseName);  // Debug log
+      deleteCourse(course.courseId);
+    });
+    
 
     courseCardsContainer.appendChild(card);
   });
 }
+
 
 // Load Course to Form for Editing
 function loadCourseToForm(course) {
@@ -222,7 +228,7 @@ function resetCourseForm() {
   courseForm.querySelector("button[type='submit']").textContent = "Add Course"; //Reset button text
 }
 
-
+//SECTION-2 ADD STUDENT TO THE SYSTEM
 // Add or Update Student
 function addOrUpdateStudent(event) {
   event.preventDefault();
@@ -476,19 +482,20 @@ function updateAssignment(assignment) {
 
 // Delete Assignment
 function deleteAssignment(assignment) {
+  console.log("Deleting assignment:", assignment);  // Debug log
   const index = assignmentsArray.indexOf(assignment);
   if (index !== -1) {
     assignmentsArray.splice(index, 1);
 
-    // Delete course which related to student
+    // Delete course which is related to student
     const student = studentsArray.find((s) => s.studentId === assignment.studentId);
     if (student) {
+      console.log("Deleting course from student:", assignment.courseName);  // Debug log
       student.courses = student.courses.filter((c) => c.courseName !== assignment.courseName);
     }
 
     renderAssignments();
-  }
-}
+  }}
 
 // Reset Assignment Form
 function resetAssignmentForm() {
