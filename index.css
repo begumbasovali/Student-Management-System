@@ -51,9 +51,9 @@ aside h3 {
 .sidebar-buttons {
   width: 90%;
   padding: 10px 15px;
-  background-color: #513051;
+  background-color: #05b3c6;
   color: whitesmoke;
-  border: 1px solid #343a60;
+  border: 1px solid #9694FF;
   border-radius: 5px;
   font-size: 0.8rem;
   text-align: center;
@@ -63,7 +63,7 @@ aside h3 {
 }
 
 .sidebar-buttons:hover {
-  background-color: #05b3c6;
+  background-color: #9694FF;
   color:#513051;
   transform: scale(1.05); /* Hover sırasında hafif büyütme efekti */
 }
