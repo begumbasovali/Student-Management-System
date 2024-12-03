@@ -63,7 +63,7 @@ aside h3 {
 }
 
 .sidebar-buttons:hover {
-  background-color: #9694FF;
+  background-color: #67D8E3;
   color:#513051;
   transform: scale(1.05); /* Hover sırasında hafif büyütme efekti */
 }
