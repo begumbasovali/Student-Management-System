@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* Genel Stil */
+/* General Style*/
 body {
   font-family: 'Lato', sans-serif;
   color: #333;
@@ -107,15 +107,15 @@ form {
   margin: 20px auto;
   max-width: 60vw;
 }
-/* Form içindeki gruplar */
+/* Groups in forms */
 .form-row {
   display: flex;
   justify-content: space-between;
-  gap: 20px; /* Gruplar arası boşluk */
+  gap: 20px; 
 }
 
 .form-row .form-group {
-  flex: 1; /* Her grup eşit alan kaplar */
+  flex: 1; /*equal sized groups*/
 }
 
 form label {
@@ -149,7 +149,7 @@ form button:hover {
   background-color: #513051;
 }
 
-/* Tablolar */
+/* Tables */
 table {
   width: 90%;
   border-collapse: collapse;
@@ -175,9 +175,9 @@ table tr:nth-child(even) {
 }
 /* Search Section */
 .search-bar {
-  width: 100%; /* Search bar genişliği tüm alanı kaplar */
-  max-width: 800px; /* Maksimum genişlik */
-  margin: 0 auto 20px auto; /* Ortalanmış */
+  width: 100%; /* Search bar width */
+  max-width: 800px; 
+  margin: 0 auto 20px auto; /* Centered */
   
 }
 
@@ -259,13 +259,13 @@ text-decoration: none;
 .modal-student-body {
   display: flex;
   margin: 20px 0;
-  justify-content: flex-start; /* Sola hizala */
-  align-items: center; /* Dikey hizalamayı ortala */
+  justify-content: flex-start; /* Align left*/
+  align-items: center; /* Vertical align centered */
   
 }
 
 .student-profile img {
-  width: 88px; /* Profil resmini küçült */
+  width: 88px; /* Profile image size */
   height: auto;
   border-radius: 50%;
   margin-right: 20px;
@@ -299,7 +299,7 @@ text-decoration: none;
   background-color: #f7f7f7;
 }
 .details-table tr:nth-child(odd) {
-  background-color: #eaeaea; /* Daha koyu renk */
+  background-color: #eaeaea; /* More darker color */
 }
 
 /* Course Search Section */
@@ -388,9 +388,9 @@ text-decoration: none;
 
   /* Sidebar */
   aside {
-    width: 100%; /* Sidebar tam ekran genişliğini kaplar */
+    width: 100%; 
     top: 0;
-    position: sticky; /* Üste sabitlenir */
+    position: sticky; /* stick to top */
     z-index: 10;
     height: auto;
     padding: 10px 0;
@@ -403,11 +403,11 @@ text-decoration: none;
   }
 
   .sidebar-buttons-container {
-    gap: 10px; /* Dikey boşluk azaltılır */
+    gap: 10px; 
   }
 
   .sidebar-buttons {
-    width: 100%; /* Buton genişliği içeriğe göre ayarlanır */
+    width: 100%; 
     padding: 10px;
     font-size: 0.9rem;
     text-align: center;
@@ -428,23 +428,23 @@ text-decoration: none;
 
   /* Form */
   form {
-    max-width: 100vw; /* Form genişliği azaltılır */
+    max-width: 100vw; 
     padding: 10px;
   }
 
   .form-row {
     flex-direction: column;
-    gap: 10px; /* Her form grubu arasındaki boşluk azaltılır */
+    gap: 10px; 
   }
 
   .form-group label {
-    font-size: 0.85rem; /* Etiket yazı boyutu küçültülür */
+    font-size: 0.85rem; 
   }
 
   .form-group input,
   .form-group select,
   .form-group textarea {
-    font-size: 0.85rem; /* Input yazı boyutu küçültülür */
+    font-size: 0.85rem; 
   }
 
   /* Search Bar */
@@ -463,7 +463,7 @@ text-decoration: none;
   
 }
 .course-search {
-  flex-direction: column; /* Arama alanları dikey olarak sıralanır */
+  flex-direction: column; 
   gap: 10px;
 }
 
@@ -476,7 +476,7 @@ text-decoration: none;
 .btn-view {
   width: 100%;
   padding: 12px 0;
-  font-size: 1.1rem; /* Font büyütülür */
+  font-size: 1.2rem; /* Bigger font size */
 }
 
 
@@ -487,8 +487,8 @@ text-decoration: none;
   
 }
 .statistics-container {
-  flex-direction: column; /* İstatistikler alt alta gelir */
-  gap: 15px; /* Aralarındaki boşluk artırılır */
+  flex-direction: column; 
+  gap: 15px; 
 }
 
 .stat-item {
@@ -498,7 +498,7 @@ text-decoration: none;
 }
 
 .stat-item p {
-  font-size: 1rem; /* İstatistiklerin yazı boyutu küçültülür */
+  font-size: 1rem; 
 }
   /* Tablolar */
   table {
@@ -515,21 +515,27 @@ text-decoration: none;
 
   /* Modal */
   .modal {
-    width: 95%; /* Modal genişliği neredeyse tam ekran olur */
-    padding: 15px;
-  }
-
-  .modal-student-content h3 {
-    font-size: 1rem; /* Başlık boyutu küçültülür */
+    width: 95%;
+    padding: 10px;
+    top: 80%;
+    left: 50%;
+    width:fit-content;
   }
 
   .statistics-container {
-    flex-direction: column; /* İstatistikler alt alta sıralanır */
+    flex-direction: column; 
     gap: 15px;
   }
 }
 
 
+
+@media (max-width: 720px) {
+  .modal {
+    width:fit-content;
+  }
+
+}
 
 
 

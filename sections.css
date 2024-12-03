@@ -1,4 +1,4 @@
-/* Kurs kartları */
+/* Course cards */
 .course-cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -6,7 +6,7 @@
   margin: 20px auto;
   background-color: #ead9fa;
   border-radius: 10px;
-  max-width: 80vw;
+  max-width: 60vw;
 }
 
 .course-card {
@@ -16,8 +16,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: 10px;
-  width: 250px;
   display: flex;
+  flex: 1 1;
   flex-direction: column;
   align-items: center;
   
@@ -36,7 +36,7 @@
   
   margin-bottom: 10px;
 }
-/* Kart içeriği */
+/* Card content */
 .course-card-body {
   text-align: left;
   width: 100%;
@@ -137,4 +137,15 @@
   border-radius: 3px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   
+}
+
+@media (max-width: 480px) {
+  .course-cards-container {
+    max-width:fit-content;
+    justify-content: center;
+  }
+  .btn-update {
+    margin-bottom: 5px;;
+    
+  }
 }
